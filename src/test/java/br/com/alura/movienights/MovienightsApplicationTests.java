@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import br.com.alura.movienights.model.DadosEpisodio;
 import br.com.alura.movienights.model.DadosSerie;
 import br.com.alura.movienights.service.ConsumoApi;
 import br.com.alura.movienights.service.ConverteDados;
@@ -23,5 +24,8 @@ class MovienightsApplicationTests implements CommandLineRunner {
 		ConverteDados conversor = new ConverteDados();
 		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
 		System.out.println(dados);
+		json = consumoApi.obterDados("https://www.omdbapi.com/?t=gilmore+girls&season=1&episode=2&apikey=74c3f45b");
+		DadosEpisodio dadosEpisodio = conversor.obterDados(json, DadosEpisodio.class);
+		System.out.println(dadosEpisodio);
 	}
 }
