@@ -1,6 +1,7 @@
 package br.com.alura.movienights.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Episodio {
     private Integer temporada;
@@ -20,10 +21,9 @@ public class Episodio {
             this.avaliacao = 0.0;
         }
         
-        String data = dadosEpisodio.dataLancamento();
-        if (data != null && !data.equalsIgnoreCase("N/A")) {
-            this.dataLancamento = LocalDate.parse(data);
-        } else {
+        try {
+            this.dataLancamento = LocalDate.parse(dadosEpisodio.dataLancamento());
+        } catch (DateTimeParseException ex) {
             this.dataLancamento = null;
         }
     }
